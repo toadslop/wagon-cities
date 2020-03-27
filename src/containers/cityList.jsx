@@ -1,7 +1,18 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { loadCities, setActiveCity } from '../actions';
 
-export default class cityList extends Component {
+class CityList extends Component {
+  componentDidMount() {
+    this.props.loadCities();
+  }
+
+  handleClick = (event) => {
+    this.props.setActiveCity(event.target.id);
+  }
+
   render() {
     const { cities } = this.props;
     return (
@@ -11,6 +22,8 @@ export default class cityList extends Component {
             <p
               className="list-group-item"
               key={city.slug}
+              id={city.slug}
+              onClick={this.handleClick}
             >
               {city.name}
             </p>);
@@ -19,3 +32,18 @@ export default class cityList extends Component {
     );
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    { loadCities, setActiveCity },
+    dispatch
+  );
+}
+
+function mapStateToProps(state) {
+  return {
+    cities: state.cities,
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CityList);

@@ -26,6 +26,7 @@
   "dependencies": {
     "acorn": "^6.4.1",
     "js-yaml": "^3.13.1",
+    "minimist": "^1.2.2",
     "react": "16.2",
     "react-dom": "16.2",
     "react-redux": "^5.0.6",

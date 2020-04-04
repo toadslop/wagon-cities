@@ -19,6 +19,7 @@ class CityList extends Component {
       <div className="cities">
         {cities.map((city) => {
           return (
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
             <p
               className="list-group-item"
               key={city.slug}
